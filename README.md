@@ -1,4 +1,7 @@
 # Upgrade Java from 11 to 17 using Ansible
+
+Provide 600 permission on private key  testkey.pem using the command **chmod 600 testkey.pem** 
+
 ![image](https://github.com/user-attachments/assets/9d4708eb-4cb7-4f2c-b882-71338b28ea2c)
 
 Command to run ansible-playbook is shown below
@@ -37,3 +40,11 @@ java version, JAVA_HOME and PATH before and after the Java Upgrade is shown in S
 
 **After Java Upgrade on Ubuntu**
 ![image](https://github.com/user-attachments/assets/fdad6311-7155-405a-98cd-db0e8e12ffd8)
+<br><br/>
+<br><br/>
+<br><br/>
+command to know the ansible_os_family, ansible_distribution etc.
+```
+ansible -i ./inventory/hosts -u ritesh --private-key testkey.pem -m setup | grep -i "ansible_os_family
+ansible 52.170.102.16 -i ./inventory/hosts -u ritesh --private-key testkey.pem -m setup | grep -i "ansible_distribution"
+```
