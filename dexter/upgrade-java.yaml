@@ -1,0 +1,239 @@
+- name: upgrade java from 11 to 17
+  hosts: all
+  become: yes
+  tasks:
+  - name: Download java-17 tar file on Amazon Linux2
+    get_url:
+      url: https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: Download java-17 tar file on Rocky Linux
+    get_url:
+      url: https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "Rocky"
+  - name: Download java-17 tar file on Alma Linux
+    get_url:
+      url: https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: Download java-17 tar file on Ubuntu
+    get_url:
+      url: https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "Debian"
+  - name: Download java-17 tar file on RHEL8
+    get_url:
+      url: https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: Unarchive opnejdk tar file on Amazon Linux2
+    unarchive:
+      src: /opt/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: Unarchive opnejdk tar file on Rocky Linux
+    unarchive:
+      src: /opt/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "Rocky"
+  - name: Unarchive opnejdk tar file on Alma Linux
+    unarchive:
+      src: /opt/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: Unarchive opnejdk tar file on Ubuntu
+    unarchive:
+      src: /opt/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "Debian"
+  - name: Unarchive opnejdk tar file on RHEL8
+    unarchive:
+      src: /opt/jdk-17_linux-x64_bin.tar.gz
+      dest: /opt
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: Delete tar file on Amazon Linux2
+    file: 
+      path: /opt/jdk-17_linux-x64_bin.tar.gz
+      state: absent
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: Delete tar file on Rocky Linux
+    file:
+      path: /opt/jdk-17_linux-x64_bin.tar.gz
+      state: absent
+    when: |
+            ansible_os_family == "Rocky"
+  - name: Delete tar file on Alma Linux
+    file:
+      path: /opt/jdk-17_linux-x64_bin.tar.gz
+      state: absent
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: Delete tar file on Ubuntu
+    file:
+      path: /opt/jdk-17_linux-x64_bin.tar.gz
+      state: absent
+    when: |
+            ansible_os_family == "Debian"
+  - name: Delete tar file on RHEL8
+    file:
+      path: /opt/jdk-17_linux-x64_bin.tar.gz
+      state: absent
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: Change directory name on Amazon Linux2
+    shell: mv /opt/jdk-17.0.12 /opt/jdk-17
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: Change directory name on Rocky Linux
+    shell: mv /opt/jdk-17.0.12 /opt/jdk-17
+    when: |
+            ansible_os_family == "Rocky"
+  - name: Change directory name on Alma Linux
+    shell: mv /opt/jdk-17.0.12 /opt/jdk-17
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: Change directory name on Ubuntu
+    shell: mv /opt/jdk-17.0.12 /opt/jdk-17
+    when: |
+            ansible_os_family == "Debian"
+  - name: Change directory name on RHEL8
+    shell: mv /opt/jdk-17.0.12 /opt/jdk-17
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: select desired java version on Amazon Linux2 
+    alternatives:
+      name: java
+      path: /opt/jdk-17/bin/java
+      link: /usr/bin/java
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: select desired java version on Rocky Linux
+    alternatives:
+      name: java
+      path: /opt/jdk-17/bin/java
+      link: /usr/bin/java
+    when: |
+            ansible_os_family == "Rocky"
+  - name: select desired java version on Alma Linux
+    alternatives:
+      name: java
+      path: /opt/jdk-17/bin/java
+      link: /usr/bin/java
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: select desired java version on Ubuntu
+    alternatives:
+      name: java
+      path: /opt/jdk-17/bin/java
+      link: /usr/bin/java
+    when: |
+            ansible_os_family == "Debian"
+  - name: select desired java version on RHEL8
+    alternatives:
+      name: java
+      path: /opt/jdk-17/bin/java
+      link: /usr/bin/java
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: update JAVA_HOME on Amazon Linux2
+    lineinfile:
+      path: /etc/profile
+      regexp: '^JAVA_HOME='
+      line: 'JAVA_HOME="/opt/jdk-17"'
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: update JAVA_HOME on Rocky Linux
+    lineinfile:
+      path: /etc/profile
+      regexp: '^JAVA_HOME='
+      line: 'JAVA_HOME="/opt/jdk-17"'
+    when: |
+            ansible_os_family == "Rocky"
+  - name: update JAVA_HOME on Alma Linux
+    lineinfile:
+      path: /etc/profile
+      regexp: '^JAVA_HOME='
+      line: 'JAVA_HOME="/opt/jdk-17"'
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: update JAVA_HOME on Ubuntu
+    lineinfile:
+      path: /etc/profile
+      regexp: '^JAVA_HOME='
+      line: 'JAVA_HOME="/opt/jdk-17"'
+    when: |
+            ansible_os_family == "Debian"
+  - name: update JAVA_HOME on RHEL8
+    lineinfile:
+      path: /etc/profile
+      regexp: '^JAVA_HOME='
+      line: 'JAVA_HOME="/opt/jdk-17"'
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: update PATH on Amazon Linux2
+    lineinfile: 
+      path: /etc/profile
+      regexp: '^PATH='
+      line: 'PATH="$PATH:$JAVA_HOME/bin:/usr/local/bin"'
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: update PATH on Rocky Linux
+    lineinfile:
+      path: /etc/profile
+      regexp: '^PATH='
+      line: 'PATH="$PATH:$JAVA_HOME/bin:/usr/local/bin"'
+    when: |
+            ansible_os_family == "Rocky"
+  - name: update PATH on Alma Linux
+    lineinfile:
+      path: /etc/profile
+      regexp: '^PATH='
+      line: 'PATH="$PATH:$JAVA_HOME/bin:/usr/local/bin"'
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: update PATH on Ubuntu
+    lineinfile:
+      path: /etc/profile
+      regexp: '^PATH='
+      line: 'PATH="$PATH:$JAVA_HOME/bin:/usr/local/bin"'
+    when: |
+            ansible_os_family == "Debian"
+  - name: update PATH on RHEL8
+    lineinfile:
+      path: /etc/profile
+      regexp: '^PATH='
+      line: 'PATH="$PATH:$JAVA_HOME/bin:/usr/local/bin"'
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
+  - name: Show Java Version on Amazon Linux2
+    shell: java -version 
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "Amazon" and ansible_distribution_version == '2'
+  - name: Show Java Version on Rocky Linux
+    shell: java -version
+    when: |
+            ansible_os_family == "Rocky"
+  - name: Show Java Version on Alma Linux
+    shell: java -version
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution == "AlmaLinux"
+  - name: Show Java Version on Ubuntu
+    shell: java -version
+    when: |
+            ansible_os_family == "Debian"
+  - name: Show Java Version on RHEL8
+    shell: java -version
+    when: |
+            ansible_os_family == "RedHat" and ansible_distribution_major_version == '8' and ansible_distribution_version == '8.3'
