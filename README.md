@@ -29,6 +29,7 @@ java version, JAVA_HOME and PATH before and after the Java Upgrade is shown in S
 
 **After Java Upgrade on RHEL8**
 ![image](https://github.com/user-attachments/assets/b2df0893-6883-4d01-9359-a580926f0aa6)
+
 ![image](https://github.com/user-attachments/assets/6d3f7f09-bd66-43d7-9e1f-1228eceaf772)
 
 **Before Java Upgrade on Ubuntu**
